@@ -1,8 +1,10 @@
 #define BPM 190
 #define PIN 12
+
 void setup() {
   pinMode(2, INPUT);
 }
+
 /* ---------------------------------------------------------------------------------------*/
 int notes[] = {  // C1 - B7
   /* 1 */33,35,37,39,41,44,46,49,52,55,58,62,
@@ -13,16 +15,19 @@ int notes[] = {  // C1 - B7
   /* 6 */1047,1109,1175,1245,1319,1397,1480,1568,1661,1760,1865,1976,
   /* 7 */2093,2217,2349,2489,2637,2794,2960,3136,3322,3520,3729,3951
 };
+
 void note( int num, int oct, int len ){
   int freq = notes[ ( num - 1 ) + (  oct - 1 ) * 12 ];
   tone ( PIN, freq );
   delay ( ( 240000 / BPM ) / len );
   noTone(PIN);
 }
+
 void rest(int len){
   noTone(PIN);
   delay( ( 240000 / BPM ) / len );
 }
+
 void chord( int num, int oct, int len, int arg ){
   // Sus4: 0, Major: 1, Minor: 2
   int dot = 128;
@@ -44,6 +49,7 @@ void chord( int num, int oct, int len, int arg ){
     noTone(PIN);
 };
 /* ---------------------------------------------------------------------------------------*/
+
 void loop() {
   int s = digitalRead(2);
   if (s == LOW) {
@@ -62,6 +68,7 @@ void loop() {
     note(12,4,32);rest(32);note(4,5,32);rest(32);note(7,5,32);rest(32);note(4,5,32);rest(32);//4
     note(2,5,8);note(12,4,8);note(2,5,8);note(7,4,8);note(12,4,8);note(7,4,8);
     note(7,5,16);rest(8);note(7,5,16);rest(8);note(7,5,16);rest(16);note(7,5,16);rest(8);note(7,5,16);rest(8);note(7,5,16);rest(16);
+
     //INTRO - B
     note(7,3,16);note(2,4,16);note(4,4,16);note(7,3,16);
     note(12,4,16);rest(16);note(5,3,16);rest(16);note(2,5,16);rest(16);note(5,3,16);rest(16);note(4,5,16);rest(16);note(7,3,16);rest(16);
@@ -110,6 +117,7 @@ void loop() {
     note(4,5,16);rest(16);note(12,4,16);rest(16);note(12,4,16);rest(16);note(2,5,16);rest(16);
     note(4,5,16);rest(16);note(5,5,16);rest(16);note(4,5,16);rest(16);note(5,5,16);rest(16);
     note(4,5,8);rest(8);note(2,5,8);rest(8);note(12,4,1);rest(1);
+    
     //MERODY - B
     note(12,4,16);note(9,3,16);note(2,5,16);note(9,3,16);note(4,5,16);note(9,3,16);
     note(12,4,16);note(9,3,16);note(2,5,16);note(9,3,16);note(4,5,16);rest(16);
@@ -134,6 +142,7 @@ void loop() {
     note(2,5,2);note(2,5,4);note(2,5,8);note(12,4,16);rest(16);
     note(12,4,2);note(12,4,4);note(12,4,8);note(2,5,16);rest(16);note(2,5,2);rest(8);
     //*/
+    
     // MERODY - C
     note(12,4,32);rest(32);rest(16);note(12,4,32);rest(32);rest(16);note(12,4,32);rest(32);rest(16);
     note(12,4,32);note(9,3,32);note(7,5,8);rest(16);note(12,4,32);note(9,3,32);note(7,5,8);rest(16);note(12,4,32);note(9,3,32);note(7,5,8);rest(16);
@@ -144,8 +153,6 @@ void loop() {
     rest(16);note(7,3,16);rest(16);note(7,3,16);note(12,4,16);note(7,3,16);
     note(12,4,16);note(7,3,16);note(2,5,16);note(7,3,16);note(4,5,16);note(7,3,16);
     note(2,5,8);rest(8);
-    
-    
     
     rest(8);
     
